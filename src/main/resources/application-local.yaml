@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes: # 라우팅 설정
+          - id: toy-user
+            uri: http://localhost:8081
+            predicates: # 라우팅 조건
+              - Path=/api/user/**
+            filters:
+              - name: addAuthenticationHeader
+  data:
+    redis:
+      host: {REDIS_HOST}
+      port: {REDIS_PORT}
+
+jwt:
+  header: Authorization
+  secret-key: {JWT_SECRET}
