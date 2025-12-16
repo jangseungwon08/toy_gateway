@@ -49,7 +49,7 @@ public class WebSecurityConfig {
                                 .accessDeniedHandler(accessDeniedHandler))
                 .authorizeHttpRequests(
                         registry -> registry
-                        .requestMatchers("/api/user/auth/**").permitAll()
+                        .requestMatchers("/api/v1/users/auth/**", "/api/v1/boards/info/**").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

@@ -10,6 +10,8 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class UserPrincipal implements Principal {
     private final String userId;
+    @Getter
+    private final String nickName;
 
     public boolean hasName(){
         return userId != null;
@@ -17,6 +19,7 @@ public class UserPrincipal implements Principal {
     public boolean hasMandatory(){
         return userId != null;
     }
+
     @Override
     public boolean equals(Object another){
         if (this == another) return true;
@@ -37,4 +40,5 @@ public class UserPrincipal implements Principal {
     public String getName() {
         return userId;
     }
+
 }

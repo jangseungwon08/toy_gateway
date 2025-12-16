@@ -3,9 +3,12 @@ package com.toy.toy_gateway.common.filter;
 
 import com.toy.toy_gateway.common.util.HttpUtils;
 import com.toy.toy_gateway.security.jwt.authentication.UserPrincipal;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.function.ServerRequest;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.function.Function;
 
 class AuthenticationHeaderFilterFunction {
@@ -19,6 +22,9 @@ class AuthenticationHeaderFilterFunction {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             if (principal instanceof UserPrincipal userPrincipal) {
                 requestBuilder.header("X-Auth-UserId", userPrincipal.getUserId());
+                String encodedNickName = URLEncoder.encode(userPrincipal.getNickName(), StandardCharsets.UTF_8);
+                requestBuilder.header("X-Auth-UserNickName", encodedNickName);
+
 // 필요시 권한 정보 입력
 //                맆요시 다른 Claims정보들도 적어주면 된다.
 // requestBuilder.header("X-Auth-Authorities", ...);

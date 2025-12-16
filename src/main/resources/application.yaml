@@ -1,6 +1,6 @@
 spring:
   application:
-    name: toy_gateway
+    name: toy-gateway
 logging:
   level:
-    org.springframework.security: INFO
+    org.springframework.security: DEBUG
